@@ -19,6 +19,7 @@ def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if not request.session.get('user'):
+            messages.add_message(request, messages.INFO, 'Hello world.')
             return redirect('post_new')
         if form.is_valid():
             post = form.save(commit=False)
@@ -36,6 +37,7 @@ def post_edit(request, pk):
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if not request.session.get('user'):
+            messages.add_message(request, messages.INFO, 'Hello world.')
             return redirect('post_edit', pk=pk)
 
         if form.is_valid():
